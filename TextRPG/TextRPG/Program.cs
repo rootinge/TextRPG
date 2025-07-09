@@ -4,7 +4,13 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            TheGame theGame = new TheGame();
+
+            theGame.Init();
+            while (theGame.running)
+            {
+                theGame.Update();
+            }
         }
     }
 }
