@@ -33,7 +33,10 @@ namespace TextRPG
             itemList = dataManager.ItemType();
         }
 
+        // 상점 아이템
         public List<Item> itemList;
+
+        // 메인씬 변경 변수
         public int currentScene = (int)PlayScene.StartScene;
     }
 }

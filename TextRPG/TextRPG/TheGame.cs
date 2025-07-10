@@ -31,6 +31,8 @@ namespace TextRPG
             scene.Add(new MainScene());
             scene.Add(new StatusScene());
             scene.Add(new InventoryScene());
+            scene.Add(new StoreScene());
+            scene.Add(new DungeonScene());
 
             foreach(IScene list in scene)
             {
@@ -53,16 +55,13 @@ namespace TextRPG
                     scene[(int)PlayScene.StatusScene].Update();
                     break;
                 case (int)PlayScene.InventoryScene:
-                    //Console.WriteLine("InventoryScene");
                     scene[(int)PlayScene.InventoryScene].Update();
                     break;
                 case (int)PlayScene.StoreScene:
-                    Console.WriteLine("StoreScene");
-                    //scene[(int)PlayScene.StoreScene].Update();
+                    scene[(int)PlayScene.StoreScene].Update();
                     break;
                 case (int)PlayScene.DungeonScene:
-                    Console.WriteLine("DungeonScene");
-                    //scene[(int)PlayScene.DungeonScene].Update();
+                    scene[(int)PlayScene.DungeonScene].Update();
                     break;
                 case (int)PlayScene.RelaxScene:
                     Console.WriteLine("RelaxScene");

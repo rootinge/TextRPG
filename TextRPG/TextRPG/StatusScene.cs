@@ -10,13 +10,26 @@ namespace TextRPG
     {
         public override void Update() 
         {
+
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
             Console.WriteLine($"Lv. {Player.Instance.lv}");
             Console.WriteLine($"{Player.Instance.name} ({Player.Instance.playClass})");
-            Console.WriteLine($"공격력 : {Player.Instance.power}");
-            Console.WriteLine($"방어력 : {Player.Instance.defense}");
+
+
+            Console.Write($"공격력 : {Player.Instance.power} ");
+            if (Player.Instance.additionalPower != 0)
+                Console.WriteLine($"(+{Player.Instance.additionalPower})");
+            else
+                Console.WriteLine();
+
+                Console.Write($"방어력 : {Player.Instance.defense} ");
+            if (Player.Instance.additionalDefense != 0)
+                Console.WriteLine($"(+{Player.Instance.additionalDefense})");
+            else
+                Console.WriteLine();
+
             Console.WriteLine($"체력 : {Player.Instance.hp}");
             Console.WriteLine($"Gold : {Player.Instance.gold}");
             Console.WriteLine();

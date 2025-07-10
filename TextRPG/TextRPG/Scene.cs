@@ -15,7 +15,6 @@
         public virtual void Update() { }
         public virtual void Clear() { }
 
-
         protected int currentState;
         // 행동 입력
         protected int BehaviorCheck(int min, int max)
@@ -51,21 +50,18 @@
                     Console.WriteLine("잘못된 입력입니다. 숫자를 입력해주세요.");
                 }
             }
-
-
         }
 
         protected void Loading()
         {
-            Console.Write("\n로딩중");
-            Thread.Sleep(300);
-            Console.Write(".");
-            Thread.Sleep(300);
-            Console.Write(".");
-            Thread.Sleep(300);
-            Console.Write(".");
-            Thread.Sleep(300);
-
+            //Console.Write("\n로딩중");
+            //Thread.Sleep(300);
+            //Console.Write(".");
+            //Thread.Sleep(300);
+            //Console.Write(".");
+            //Thread.Sleep(300);
+            //Console.Write(".");
+            //Thread.Sleep(300);
         }
     }
 }

@@ -28,8 +28,12 @@ namespace TextRPG
         public string? playClass;
         public int power;
         public int defense;
+        public int MAXhp;
         public int hp;
         public int gold;
+
+        public int additionalPower;
+        public int additionalDefense;
 
         public List<string> playerClasses;
 
@@ -43,10 +47,50 @@ namespace TextRPG
             playClass = null;
             power = 10;
             defense = 5;
-            hp = 100;
+            MAXhp = 100;
+            hp = MAXhp;
+
             gold = 1500;
+            additionalPower = 0;
+            additionalDefense = 0;
             playerClasses = GameManager.Instance.dataManager.PlayerClassType();
             playerItems = new List<Item>();
+        }
+
+        public void ItemShopping(int price)
+        {
+            gold -= price;
+        }
+
+        public void ItemSale(int price)
+        {
+            gold += price;
+        }
+
+        public void ItemAdditional()
+        {
+            additionalPower = 0;
+            additionalDefense = 0;
+
+            power = 10;
+            defense = 5;
+
+            foreach (Item item in playerItems)
+            {
+                if(item.IsEquipped)
+                {
+                    if(item.abilityName == "공격력")
+                    {
+                        additionalPower += item.ability;
+                        power += item.ability;
+                    }
+                    else if(item.abilityName == "방어력")
+                    {
+                        additionalDefense += item.ability;
+                        defense += item.ability;
+                    }
+                }
+            }
         }
     }
 }

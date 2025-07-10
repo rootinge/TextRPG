@@ -12,13 +12,12 @@ namespace TextRPG
         // 플레이어 직업
         public List<string> PlayerClassType()
         {
+
             List<string> lset = new List<string>();
             lset.Add("전사");
             lset.Add("도적");
             lset.Add("사제");
             lset.Add("모험가");
-            lset.Add("모험가");
-
             return lset;
         }
 
@@ -34,6 +33,7 @@ namespace TextRPG
             return lset;
         }
 
+        // 상점 물품
         public List<Item> ItemType()
         {
             List<Item> lset = new List<Item>();
@@ -43,9 +43,17 @@ namespace TextRPG
             lset.Add(new Item("낡은 검", "공격력", 2, "쉽게 볼 수 있는 낡은 검 입니다.", 600));
             lset.Add(new Item("청동 도끼", "공격력", 5, "어디선가 사용됐던거 같은 도끼입니다.", 1500));
             lset.Add(new Item("스파르타의 창", "공격력", 7, "스파르타의 전사들이 사용했다는 전설의 창입니다.", 2000));
+            return lset;
+        }
+
+        public List<Dungeon> DungeonType()
+        {
+            List<Dungeon> lset = new List<Dungeon>();
+            lset.Add(new Dungeon("쉬운", 5, 1000));
+            lset.Add(new Dungeon("일반", 11, 1700));
+            lset.Add(new Dungeon("어려운", 17, 2500));
 
             return lset;
         }
-        
     }
 }

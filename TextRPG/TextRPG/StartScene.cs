@@ -51,7 +51,6 @@ namespace TextRPG
 
             Player.Instance.name = Console.ReadLine();
             currentState = (int)StartSceneState.NameCheck;
-
         }
 
         // 이름 선택 확인

@@ -1,4 +1,6 @@
-﻿namespace TextRPG
+﻿using System.Drawing;
+
+namespace TextRPG
 {
     internal class InventoryScene : Scene
     {
@@ -8,6 +10,7 @@
             Installation,
             MainMenu
         }
+
         public override void Init()
         {
             currentState = (int)InventorySceneState.Inventory;
@@ -43,19 +46,7 @@
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
 
-            for (int i = 0; i < Player.Instance.playerItems.Count; i++)
-            {
-                Item item = Player.Instance.playerItems[i];
-                if (item.IsEquipped)
-                {
-                    Console.Write("- [E]");
-                }
-                else
-                    Console.Write("- ");
-
-                Console.WriteLine($" {item.name}\t| {item.abilityName} " +
-                                      $"+{item.ability}\t| {item.description}");
-            }
+            ItemPrint();
 
             Console.WriteLine();
             Console.WriteLine("1. 장착 관리\n0. 나가기");
@@ -81,19 +72,7 @@
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
 
-            for (int i = 0; i < Player.Instance.playerItems.Count; i++)
-            {
-                Item item = Player.Instance.playerItems[i];
-                if (item.IsEquipped)
-                {
-                    Console.Write("- [E]");
-                }
-                else
-                    Console.Write("- ");
-
-                Console.WriteLine($" {i + 1} {item.name}\t| {item.abilityName} " +
-                                      $"+{item.ability}\t| {item.description}");
-            }
+            ItemPrint(1);
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
@@ -105,7 +84,28 @@
             else
             {
                 Player.Instance.playerItems[choice - 1].IsEquipped = !Player.Instance.playerItems[choice - 1].IsEquipped;
+                Player.Instance.ItemAdditional();
             }
+        }
+
+        // point = 1일때 아이템 앞 번호표 생김
+        private void ItemPrint(int point = 0)
+        {
+            for (int i = 0; i < Player.Instance.playerItems.Count; i++)
+            {
+                Item item = Player.Instance.playerItems[i];
+                Console.Write("- ");
+                if (point == 1)
+                    Console.Write($"{i + 1}. ");
+                if (item.IsEquipped)
+                {
+                    Console.Write("[E]");
+                }
+
+                Console.WriteLine($"{item.name}\t| {item.abilityName} " +
+                                      $"+{item.ability}\t| {item.description}");
+            }
+
         }
     }
 }
