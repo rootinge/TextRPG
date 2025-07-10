@@ -28,8 +28,12 @@ namespace TextRPG
         GameManager()
         {
             dataManager = new DataManager();
+            itemList = new List<Item>();
+
+            itemList = dataManager.ItemType();
         }
 
-        public PlayScene currentScene = PlayScene.StartScene;
+        public List<Item> itemList;
+        public int currentScene = (int)PlayScene.StartScene;
     }
 }

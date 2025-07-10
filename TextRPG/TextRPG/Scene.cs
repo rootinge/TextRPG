@@ -10,19 +10,20 @@
     // 부모 클래스
     internal class Scene : IScene
     {
-        protected Player player = Player.Instance;
-        protected GameManager gameManager = GameManager.Instance;
         protected int choice = 0;
         public virtual void Init() { }
         public virtual void Update() { }
         public virtual void Clear() { }
 
+
+        protected int currentState;
+        // 행동 입력
         protected int BehaviorCheck(int min, int max)
         {
             int input;
-            
 
-            while(true)
+
+            while (true)
             {
                 Console.Write("\n원하시는 행동을 입력해주세요.\n>> ");
                 string? line = Console.ReadLine();
@@ -35,7 +36,7 @@
                 }
                 else if (int.TryParse(line, out input))
                 {
-                    if(input >=min && input <=max)
+                    if (input >= min && input <= max)
                     {
                         return input;
                     }
@@ -51,7 +52,7 @@
                 }
             }
 
-            
+
         }
 
         protected void Loading()
@@ -64,45 +65,7 @@
             Thread.Sleep(300);
             Console.Write(".");
             Thread.Sleep(300);
-            
+
         }
     }
-
-    class MainScene : Scene
-    {
-
-        enum MainSceneState
-        {
-            InputName,
-            NameCheck,
-            SelectClass,
-            MainMenu
-        }
-        private MainSceneState currentState = MainSceneState.InputName;
-
-        List<String> activity;
-
-        public override void Init()
-        {
-            activity = GameManager.Instance.dataManager.SceneType();
-            
-        }
-
-        public override void Update()
-        {
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-            Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.\n");
-
-            for (int i = 0; i < activity.Count; i++) 
-            {
-                Console.WriteLine($"{i + 1}. {activity[i]}");
-            }
-            Console.WriteLine();
-            BehaviorCheck(1, activity.Count);
-            Loading();
-        }
-
-    }
-
-
 }
