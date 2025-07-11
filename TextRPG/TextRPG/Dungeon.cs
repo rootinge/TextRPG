@@ -11,7 +11,7 @@
 
         private Random random;
 
-        public Dungeon(string name,int defensive, int clearGold)
+        public Dungeon(string name, int defensive, int clearGold)
         {
             this.name = name;
             this.defensive = defensive;
@@ -26,14 +26,15 @@
         public int DungeonDamage()
         {
             int defenseDifference = defensive - Player.Instance.defense;
-            int damage = random.Next(minDamage + defenseDifference,maxDamage + defenseDifference + 1);
+            int damage = random.Next(minDamage + defenseDifference, maxDamage + defenseDifference + 1);
 
             return damage;
         }
 
-        public int DungeonClaer()
+        public int ClaerGold()
         {
-            return clearGold + random.Next(clearGold / Player.Instance.power, clearGold / (Player.Instance.power * 2) - 1);
+            int goldRange = random.Next((int)(((float)Player.Instance.power / 100) * clearGold), (int)(((float)Player.Instance.power * 2 / 100) * clearGold + 1));
+            return goldRange + clearGold;
         }
 
     }

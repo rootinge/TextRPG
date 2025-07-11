@@ -15,7 +15,7 @@ namespace TextRPG
         InventoryScene,
         StoreScene,
         DungeonScene,
-        RelaxScene
+        RestScene
     }
 
     internal class TheGame
@@ -33,6 +33,7 @@ namespace TextRPG
             scene.Add(new InventoryScene());
             scene.Add(new StoreScene());
             scene.Add(new DungeonScene());
+            scene.Add(new RestScene());
 
             foreach(IScene list in scene)
             {
@@ -63,9 +64,8 @@ namespace TextRPG
                 case (int)PlayScene.DungeonScene:
                     scene[(int)PlayScene.DungeonScene].Update();
                     break;
-                case (int)PlayScene.RelaxScene:
-                    Console.WriteLine("RelaxScene");
-                    //scene[(int)PlayScene.RelaxScene].Update();
+                case (int)PlayScene.RestScene:
+                    scene[(int)PlayScene.RestScene].Update();
                     break;
             }
         }

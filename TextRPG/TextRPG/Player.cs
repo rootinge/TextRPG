@@ -26,11 +26,16 @@ namespace TextRPG
         public string? name;
         public int lv;
         public string? playClass;
+        public int basePower;
+        public int baseDefense;
         public int power;
         public int defense;
-        public int MAXhp;
+        public int maxHp;
         public int hp;
         public int gold;
+
+        public int currentExperience;
+        public int maxExperience;
 
         public int additionalPower;
         public int additionalDefense;
@@ -45,10 +50,15 @@ namespace TextRPG
             name = null;
             lv = 1;
             playClass = null;
-            power = 10;
-            defense = 5;
-            MAXhp = 100;
-            hp = MAXhp;
+            basePower = 10;
+            baseDefense = 5;
+            power = basePower;
+            defense = baseDefense;
+            maxHp = 100;
+            hp = maxHp;
+
+            currentExperience = 0;
+            maxExperience = 1;
 
             gold = 1500;
             additionalPower = 0;
@@ -72,8 +82,8 @@ namespace TextRPG
             additionalPower = 0;
             additionalDefense = 0;
 
-            power = 10;
-            defense = 5;
+            power = basePower;
+            defense = baseDefense;
 
             foreach (Item item in playerItems)
             {
@@ -91,6 +101,49 @@ namespace TextRPG
                     }
                 }
             }
+        }
+
+        public void DungeonClear(int damage, int gold = 0)
+        {
+            if (damage > 0)
+            {
+                hp -= damage;
+                if (hp < 0)
+                {
+                    hp = 0;
+                }
+            }
+
+            this.gold += gold;
+        }
+
+        public void PlayerDie()
+        {
+            Console.WriteLine("캐릭터가 죽었습니다.");
+            Console.WriteLine("게임을 종료합니다.");
+            Environment.Exit(0);
+        }
+
+        public void GainExperience()
+        {
+            currentExperience++;
+            if (currentExperience >= maxExperience)
+            {
+                LevelUp();
+            }
+        }
+
+        private void LevelUp()
+        {
+            maxExperience++;
+            currentExperience = 0;
+            lv++;
+            basePower += 2;
+            baseDefense += 1;
+            power = basePower + additionalPower;
+            defense = baseDefense + additionalDefense;
+            Console.WriteLine($"\n레벨업! 현재 레벨 : {lv}");
+            Console.WriteLine($"공격력 : 2↑   방어력 : 1↑");
         }
     }
 }

@@ -54,14 +54,14 @@
 
         protected void Loading()
         {
-            //Console.Write("\n로딩중");
-            //Thread.Sleep(300);
-            //Console.Write(".");
-            //Thread.Sleep(300);
-            //Console.Write(".");
-            //Thread.Sleep(300);
-            //Console.Write(".");
-            //Thread.Sleep(300);
+            Console.Write("\n로딩중");
+            Thread.Sleep(200);
+            Console.Write(".");
+            Thread.Sleep(200);
+            Console.Write(".");
+            Thread.Sleep(200);
+            Console.Write(".");
+            Thread.Sleep(200);
         }
     }
 }

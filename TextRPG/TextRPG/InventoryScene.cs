@@ -83,7 +83,15 @@ namespace TextRPG
                 currentState = (int)InventorySceneState.Inventory;
             else
             {
-                Player.Instance.playerItems[choice - 1].IsEquipped = !Player.Instance.playerItems[choice - 1].IsEquipped;
+                List<Item> items = Player.Instance.playerItems;
+                foreach(Item item in items)
+                {
+                    if (items[choice - 1].abilityName == item.abilityName && item.IsEquipped && !(item == items[choice -1]))
+                    {
+                        item.IsEquipped = false;
+                    }
+                }
+                items[choice - 1].IsEquipped = !items[choice - 1].IsEquipped;
                 Player.Instance.ItemAdditional();
             }
         }

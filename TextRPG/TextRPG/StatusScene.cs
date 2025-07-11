@@ -14,7 +14,7 @@ namespace TextRPG
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
-            Console.WriteLine($"Lv. {Player.Instance.lv}");
+            Console.WriteLine($"Lv. {Player.Instance.lv} ({Player.Instance.currentExperience}/{Player.Instance.maxExperience})");
             Console.WriteLine($"{Player.Instance.name} ({Player.Instance.playClass})");
 
 
