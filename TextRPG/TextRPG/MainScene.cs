@@ -24,13 +24,21 @@ namespace TextRPG
             {
                 Console.WriteLine($"{i + 1}. {activity[i]}");
             }
+            Console.WriteLine("0. 저장 후 나가기");
             Console.WriteLine();
-            choice = BehaviorCheck(1, activity.Count);
+            choice = BehaviorCheck(0, activity.Count);
 
             for (int i = 2; i < activity.Count + 2; i++)
             {
                 if (choice + 1 == i)
                     GameManager.Instance.currentScene = choice + 1;
+            }
+
+            if (choice == 0)
+            {
+                Console.WriteLine("게임을 저장하고 종료합니다.");
+                DataManager.SavePlayer(DataManager.savePath);
+
             }
 
             Loading();

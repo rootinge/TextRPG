@@ -23,29 +23,34 @@ namespace TextRPG
             }
         }
 
-        public string? name;
-        public int lv;
-        public string? playClass;
-        public int basePower;
-        public int baseDefense;
-        public int power;
-        public int defense;
-        public int maxHp;
-        public int hp;
-        public int gold;
+        public string? name { get; set; }
+        public int lv { get; set; }
+        public string? playClass { get; set; }
 
-        public int currentExperience;
-        public int maxExperience;
+        // 플레이어 능력치
+        public int basePower { get; set; }
+        public int baseDefense { get; set; }
+        // 플레이어 능력치 총합
+        public int power { get; set; }
+        public int defense { get; set; }
 
-        public int additionalPower;
-        public int additionalDefense;
+        public int maxHp { get; set; }
+        public int hp { get; set; }
+        public int gold { get; set; }
+
+        // 경험치
+        public int currentExperience { get; set; }
+        public int maxExperience { get; set; }
+
+        public int additionalPower { get; set; }
+        public int additionalDefense { get; set; }
 
         public List<string> playerClasses;
 
         // 가지고 있는 아이템
         public List<Item> playerItems;
 
-        private Player()
+        public Player()
         {
             name = null;
             lv = 1;
@@ -121,6 +126,9 @@ namespace TextRPG
         {
             Console.WriteLine("캐릭터가 죽었습니다.");
             Console.WriteLine("게임을 종료합니다.");
+            string savePath = DataManager.savePath;
+            if (File.Exists(savePath))
+                File.Delete(savePath);
             Environment.Exit(0);
         }
 

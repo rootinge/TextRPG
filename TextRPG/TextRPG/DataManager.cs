@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TextRPG
 {
     internal class DataManager
     {
+        // 저장 위치
+        public static string savePath = "C:\\GitHub\\TextRPG\\TextRPG\\save.json";
+
         // 플레이어 직업
         public List<string> PlayerClassType()
         {
@@ -54,6 +58,60 @@ namespace TextRPG
             lset.Add(new Dungeon("어려운", 17, 2500));
 
             return lset;
+        }
+
+
+        public static void SavePlayer(string path)
+        {
+            var options = new JsonSerializerOptions { IncludeFields = true };
+            var json = JsonSerializer.Serialize(Player.Instance);
+            string[] itemName = new string[20];
+            for(int i = 0; i < Player.Instance.playerItems.Count; i++)
+            {
+                itemName[i] = Player.Instance.playerItems[i].name;
+
+            }
+
+            File.WriteAllText(path, json);
+            //File.WriteAllText(path, itemName.ToString());
+            Environment.Exit(0);
+        }
+
+        public static void LoadPlayer(string path)
+        {
+
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("저장된 플레이어가 없습니다.");
+
+                return;
+            }
+
+            var json = File.ReadAllText(path);
+
+            var loadedPlayer = JsonSerializer.Deserialize<Player>(json);
+
+            if (loadedPlayer != null)
+            {
+                Player.Instance.name = loadedPlayer.name;
+                Player.Instance.lv = loadedPlayer.lv;
+                Player.Instance.playClass = loadedPlayer.playClass;
+                Player.Instance.basePower = loadedPlayer.basePower;
+                Player.Instance.baseDefense = loadedPlayer.baseDefense;
+                Player.Instance.power = loadedPlayer.power;
+                Player.Instance.defense = loadedPlayer.defense;
+                Player.Instance.maxHp = loadedPlayer.maxHp;
+                Player.Instance.hp = loadedPlayer.hp;
+                Player.Instance.gold = loadedPlayer.gold;
+                Player.Instance.currentExperience = loadedPlayer.currentExperience;
+                Player.Instance.maxExperience = loadedPlayer.maxExperience;
+                Player.Instance.additionalPower = loadedPlayer.additionalPower;
+                Player.Instance.additionalDefense = loadedPlayer.additionalDefense;
+                Player.Instance.playerClasses = loadedPlayer.playerClasses;
+
+
+                GameManager.Instance.currentScene = (int)PlayScene.MainScene;
+            }
         }
     }
 }

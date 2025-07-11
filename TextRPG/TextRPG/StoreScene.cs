@@ -1,9 +1,6 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-
-namespace TextRPG
+﻿namespace TextRPG
 {
-    
+
 
     internal class StoreScene : Scene
     {
@@ -67,7 +64,7 @@ namespace TextRPG
                     currentState = (int)StoreSceneState.ItemSale;
                     break;
             }
-            
+
 
         }
 
@@ -126,9 +123,9 @@ namespace TextRPG
                 Console.WriteLine($"{item.price * 85 / 100}G");
             }
             Console.WriteLine("\n0. 나가기\n");
-            choice = BehaviorCheck(0,Player.Instance.playerItems.Count);
+            choice = BehaviorCheck(0, Player.Instance.playerItems.Count);
 
-            if(choice == 0)
+            if (choice == 0)
             {
                 currentState = (int)StoreSceneState.Store;
             }
@@ -136,7 +133,7 @@ namespace TextRPG
             {
                 Item item = Player.Instance.playerItems[choice - 1];
                 item.hasItem = false;
-                if(item.IsEquipped)
+                if (item.IsEquipped)
                 {
                     item.IsEquipped = false;
                     Player.Instance.ItemAdditional();
@@ -154,7 +151,7 @@ namespace TextRPG
 
             Console.WriteLine("[보유 골드]");
             Console.WriteLine($"{Player.Instance.gold} G");
-            for (int i = 0; i < GameManager.Instance.itemList.Count; i++) 
+            for (int i = 0; i < GameManager.Instance.itemList.Count; i++)
             {
                 Item item = GameManager.Instance.itemList[i];
 
@@ -166,14 +163,19 @@ namespace TextRPG
                 Console.Write($"{item.name,-13}\t| {item.abilityName} " +
                               $"+{item.ability,-5}\t| {item.description,-10}\t| ");
 
-                if (item.hasItem)
+                bool hasItem = false;
+                foreach (Item playerItem in Player.Instance.playerItems)
                 {
-                    Console.WriteLine("구매완료");
+                    if (playerItem.name == item.name)
+                    {
+                        Console.WriteLine("구매완료");
+                        hasItem = true;
+                        break;
+                    }
                 }
-                else
-                {
+                if (!hasItem)
                     Console.WriteLine($"{item.price}G");
-                }
+
             }
         }
 

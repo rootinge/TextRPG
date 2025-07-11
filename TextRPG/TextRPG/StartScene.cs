@@ -10,6 +10,7 @@ namespace TextRPG
     {
         enum StartSceneState
         {
+            GameStart,
             InputName,
             NameCheck,
             SelectClass,
@@ -18,13 +19,16 @@ namespace TextRPG
 
         public override void Init()
         {
-            currentState = (int)StartSceneState.InputName;
+            currentState = (int)StartSceneState.GameStart;
         }
 
         public override void Update()
         {
             switch (currentState)
             {
+                case (int)StartSceneState.GameStart:
+                    GameStart();
+                    break;
                 case (int)StartSceneState.InputName:
                     InputName();
                     break;
@@ -39,6 +43,32 @@ namespace TextRPG
                     break;
             }
             Loading();
+        }
+
+        public override void Clear()
+        {
+            currentState = (int)StartSceneState.GameStart;
+            choice = 0;
+        }
+
+        void GameStart()
+        {
+            Console.WriteLine("스파르타 던전이 시작됩니다.");
+            Console.WriteLine("던전에서 살아남아 보세요!");
+            Console.WriteLine();
+
+            Console.WriteLine("1. 시작하기 \n2. 불러오기");
+            choice = BehaviorCheck(1, 2);
+            if (choice == 1)
+            {
+                Console.WriteLine("게임을 시작합니다.");
+                currentState = (int)StartSceneState.InputName;
+            }
+            else if (choice == 2)
+            {
+                DataManager.LoadPlayer(DataManager.savePath);
+            }
+            
         }
 
 
