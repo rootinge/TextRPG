@@ -63,17 +63,8 @@ namespace TextRPG
 
         public static void SavePlayer(string path)
         {
-            var options = new JsonSerializerOptions { IncludeFields = true };
             var json = JsonSerializer.Serialize(Player.Instance);
-            string[] itemName = new string[20];
-            for(int i = 0; i < Player.Instance.playerItems.Count; i++)
-            {
-                itemName[i] = Player.Instance.playerItems[i].name;
-
-            }
-
             File.WriteAllText(path, json);
-            //File.WriteAllText(path, itemName.ToString());
             Environment.Exit(0);
         }
 
@@ -108,9 +99,20 @@ namespace TextRPG
                 Player.Instance.additionalPower = loadedPlayer.additionalPower;
                 Player.Instance.additionalDefense = loadedPlayer.additionalDefense;
                 Player.Instance.playerClasses = loadedPlayer.playerClasses;
-
+                Player.Instance.playerItems = loadedPlayer.playerItems;
 
                 GameManager.Instance.currentScene = (int)PlayScene.MainScene;
+
+                for(int i = 0; i < Player.Instance.playerItems.Count; i++)
+                {
+                    for(int j = 0; j < GameManager.Instance.itemList.Count; j++)
+                    {
+                        if (Player.Instance.playerItems[i].name == GameManager.Instance.itemList[j].name)
+                        {
+                            GameManager.Instance.itemList[j] = Player.Instance.playerItems[i];
+                        }
+                    }
+                }
             }
         }
     }

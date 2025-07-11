@@ -8,13 +8,13 @@ namespace TextRPG
 {
     internal class Item
     {
-        public string? name; 
-        public string? abilityName; // 능력
-        public int ability;         // 능력치
-        public string? description; // 설명
-        public int price;           // 가격
-        public bool hasItem;        // 템을 가지고 있는지
-        public bool IsEquipped;     // 장착 중인지
+        public string? name { get; set; }
+        public string? abilityName { get; set; } // 능력
+        public int ability { get; set; }         // 능력치
+        public string? description { get; set; } // 설명
+        public int price { get; set; }           // 가격
+        public bool hasItem { get; set; }        // 템을 가지고 있는지
+        public bool IsEquipped { get; set; }    // 장착 중인지
 
         // 아이템 이름, 능력치 이름, 능력치, 아이템 설명, 가격
         public Item(string? name, string? abilityName, int ability, string? description, int price)

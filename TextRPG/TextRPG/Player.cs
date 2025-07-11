@@ -48,7 +48,7 @@ namespace TextRPG
         public List<string> playerClasses;
 
         // 가지고 있는 아이템
-        public List<Item> playerItems;
+        public List<Item> playerItems { get; set; }
 
         public Player()
         {

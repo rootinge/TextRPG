@@ -163,18 +163,16 @@
                 Console.Write($"{item.name,-13}\t| {item.abilityName} " +
                               $"+{item.ability,-5}\t| {item.description,-10}\t| ");
 
-                bool hasItem = false;
-                foreach (Item playerItem in Player.Instance.playerItems)
+
+                if (item.hasItem)
                 {
-                    if (playerItem.name == item.name)
-                    {
-                        Console.WriteLine("구매완료");
-                        hasItem = true;
-                        break;
-                    }
+                    Console.WriteLine("구매완료");
                 }
-                if (!hasItem)
+                else
+                {
                     Console.WriteLine($"{item.price}G");
+                }
+
 
             }
         }

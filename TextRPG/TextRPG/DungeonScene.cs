@@ -32,6 +32,7 @@ namespace TextRPG
             {
                 case (int)DungeonSceneState.DungeonMenu:
                     DungeonMenu();
+                    Loading();
                     break;
                 case (int)DungeonSceneState.Hunting:
                     Hunting();
@@ -39,10 +40,12 @@ namespace TextRPG
                     break;
                 case (int)DungeonSceneState.Dungeon:
                     clearDungeon();
+                    Loading();
                     break;
                 case (int)DungeonSceneState.MainMenu:
                     Clear();
                     GameManager.Instance.currentScene = (int)PlayScene.MainScene;
+                    Loading();
                     break;
             }
         }
