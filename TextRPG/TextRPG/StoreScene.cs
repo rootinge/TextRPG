@@ -172,8 +172,6 @@
                 {
                     Console.WriteLine($"{item.price}G");
                 }
-
-
             }
         }
 

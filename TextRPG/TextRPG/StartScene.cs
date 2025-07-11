@@ -57,11 +57,14 @@ namespace TextRPG
             Console.WriteLine("던전에서 살아남아 보세요!");
             Console.WriteLine();
 
-            Console.WriteLine("1. 시작하기 \n2. 불러오기");
+            Console.WriteLine("1. 처음부터 \n2. 불러오기");
             choice = BehaviorCheck(1, 2);
             if (choice == 1)
             {
                 Console.WriteLine("게임을 시작합니다.");
+                string savePath = DataManager.savePath;
+                if (File.Exists(savePath))
+                    File.Delete(savePath);
                 currentState = (int)StartSceneState.InputName;
             }
             else if (choice == 2)
